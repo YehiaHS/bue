@@ -10,7 +10,7 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 renderer.setSize(innerWidth,innerHeight);
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=1.15;
+renderer.toneMappingExposure=1.24;
 stage.appendChild(renderer.domElement);
 
 const scene=new THREE.Scene();
@@ -799,6 +799,10 @@ function blit(mat,target){
   renderer.render(post.scene,post.cam);
 }
 function postRender(t){
+  // crisp direct render: no post-processing blur (FXAA/grain/CA/vignette bypassed)
+  renderer.setRenderTarget(null);
+  renderer.render(scene,camera);
+  return;
   if(!post.ready){ renderer.setRenderTarget(null); renderer.render(scene,camera); return; }
   /* ambient life: gentle starfield parallax + twinkle + dust drift */
   if(SKY&&SKY.p){
