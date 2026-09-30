@@ -215,7 +215,7 @@ slide({
       h.comet.material.userData.base=1.0;
       h.comet.material.userData.alwaysT=true;
       h.mats.push(h.comet.material);
-      g.add(h.comet);
+      h.g.add(h.comet);
     }
     {
       const cy=(t*0.085)%1;

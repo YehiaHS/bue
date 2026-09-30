@@ -683,7 +683,8 @@ function fxaaShader(){
       ' vec3 rgbB=rgbA*0.5+0.25*(texture2D(tDiffuse,vUv+dir*-0.5).rgb+texture2D(tDiffuse,vUv+dir*0.5).rgb);',
       ' float lB=dot(rgbB,luma);',
       ' if((lB<lMin)||(lB>lMax)) rgbB=rgbA;',
-      ' gl_FragColor=vec4(rgbB,1.0);'
+      ' gl_FragColor=vec4(rgbB,1.0);',
+      '}'
     ].join('\n')
   };
 }
@@ -714,7 +715,8 @@ function bloomShader(){
       ' vec4 c=texture2D(tDiffuse,vUv);',
       ' float l=dot(c.rgb,vec3(0.2126,0.7152,0.0722));',
       ' float k=smoothstep(uThreshold,uThreshold+0.35,l);',
-      ' gl_FragColor=c+sum*uStrength*k;'
+      ' gl_FragColor=c+sum*uStrength*k;',
+      '}'
     ].join('\n')
   };
 }
@@ -748,7 +750,8 @@ function gradeShader(){
       ' float g=hash(vUv*vec2(1920.0,1080.0)+fract(uTime)*371.0)-0.5;',
       ' col+=g*0.035*(1.0-vig*0.45);',
       ' col+=vec3(0.42,0.08,0.10)*uPulse*r2*3.2;',
-      ' gl_FragColor=vec4(srgb(col),1.0);'
+      ' gl_FragColor=vec4(srgb(col),1.0);',
+      '}'
     ].join('\n')
   };
 }
